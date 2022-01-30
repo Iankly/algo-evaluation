@@ -13,6 +13,7 @@ function combine(tableau1, tableau2) {
         }
         
     }
+    // tout ce qui a en dessous est bonus
     if (tableau1.length > tableau2.length){
         while (a < tableau2.length){
             result.push(tableau1[a],tableau2[a]);
@@ -47,8 +48,15 @@ console.log(combine([1,2,3],[4,5,6,11,12,13]))
  * Par exemple : rotate([1, 2, 3, 4, 5], 2) renverra [4, 5, 1, 2, 3] 
  */
 function rotate(tableau, offset) {
+    while (offset !== 0){
+        tableau.unshift(tableau[tableau.length-1])
+        tableau.pop()
+        offset=offset-1
+    }
+    return tableau
 }
 
+console.log(rotate([0,1,2,3,4,5,6],4))
 /**
  * Suite de Syracuse
  * 
@@ -61,5 +69,17 @@ function rotate(tableau, offset) {
  * Pour 1, la suite sera : [1, 4, 2, 1, 4, 2, 1, 4, 2, 1]
  */
 function syracuse(nombre) {
+    let result= [nombre]
+    while (result.length !== 10){
+        if (result[result.length-1]%2 === 0 ){
+            result.push(result[result.length-1]/2)
+        }
+        else{
+            result.push(result[result.length-1]*3+1)
+        }
+    }
+    return result
 
 }
+
+console.log(syracuse(14))
